@@ -1,0 +1,235 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Thu Jul 24 21:20:11 2025
+# Process ID: 3584
+# Current directory: F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian
+# Command line: vivado.exe F:\zdyz_ZYNQ_FPGA\vivado_code\vivado_prj\fft_zishiying_lvboqi\fftjian\fftjian.xpr
+# Log file: F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/vivado.log
+# Journal file: F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian\vivado.jou
+#-----------------------------------------------------------
+Sourcing tcl script 'D:/FPGA_software/Vivado/2020.2/scripts/Vivado_init.tcl'
+start_gui
+open_project F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.xpr
+INFO: [Project 1-313] Project file moved from 'D:/FPGAmoudle/fftjian' since last save.
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'D:/FPGA_software/Vivado/2020.2/data/ip'.
+WARNING: [IP_Flow 19-2162] IP 'ila_0' is locked:
+* IP definition 'ILA (Integrated Logic Analyzer) (6.2)' for IP 'ila_0' (customized with software release 2019.2) has a different revision in the IP Catalog.
+WARNING: [IP_Flow 19-2162] IP 'dds_compiler_0' is locked:
+* IP definition 'DDS Compiler (6.0)' for IP 'dds_compiler_0' (customized with software release 2019.2) has a different revision in the IP Catalog.
+WARNING: [IP_Flow 19-2162] IP 'xfft_0' is locked:
+* IP definition 'Fast Fourier Transform (9.1)' for IP 'xfft_0' (customized with software release 2019.2) has a different revision in the IP Catalog.
+WARNING: [IP_Flow 19-2162] IP 'clk_wiz_0' is locked:
+* IP definition 'Clocking Wizard (6.0)' for IP 'clk_wiz_0' (customized with software release 2019.2) has a different revision in the IP Catalog.
+INFO: [Project 1-230] Project 'fftjian.xpr' upgraded for this version of Vivado.
+open_project: Time (s): cpu = 00:00:02 ; elapsed = 00:00:06 . Memory (MB): peak = 1141.707 ; gain = 0.000
+update_compile_order -fileset sources_1
+report_ip_status -name ip_status 
+upgrade_ip [get_ips  {clk_wiz_0 dds_compiler_0 ila_0 xfft_0}] -log ip_upgrade.log
+Upgrading 'clk_wiz_0'
+INFO: [IP_Flow 19-3422] Upgraded clk_wiz_0 (Clocking Wizard 6.0) from revision 4 to revision 6
+INFO: [IP_Flow 19-1686] Generating 'Instantiation Template' target for IP 'clk_wiz_0'...
+Upgrading 'dds_compiler_0'
+INFO: [IP_Flow 19-3422] Upgraded dds_compiler_0 (DDS Compiler 6.0) from revision 19 to revision 20
+INFO: [IP_Flow 19-1686] Generating 'Instantiation Template' target for IP 'dds_compiler_0'...
+Upgrading 'ila_0'
+INFO: [IP_Flow 19-3422] Upgraded ila_0 (ILA (Integrated Logic Analyzer) 6.2) from revision 10 to revision 11
+INFO: [IP_Flow 19-1686] Generating 'Instantiation Template' target for IP 'ila_0'...
+Upgrading 'xfft_0'
+INFO: [IP_Flow 19-3422] Upgraded xfft_0 (Fast Fourier Transform 9.1) from revision 3 to revision 5
+INFO: [IP_Flow 19-1686] Generating 'Instantiation Template' target for IP 'xfft_0'...
+INFO: [Coretcl 2-1525] Wrote upgrade log to 'F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/ip_upgrade.log'.
+upgrade_ip: Time (s): cpu = 00:00:07 ; elapsed = 00:00:09 . Memory (MB): peak = 1364.699 ; gain = 222.992
+export_ip_user_files -of_objects [get_ips {clk_wiz_0 dds_compiler_0 ila_0 xfft_0}] -no_script -sync -force -quiet
+generate_target all [get_files  {F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0.xci F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.srcs/sources_1/ip/dds_compiler_0/dds_compiler_0.xci F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.srcs/sources_1/ip/ila_0/ila_0.xci F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.srcs/sources_1/ip/xfft_0/xfft_0.xci}]
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'clk_wiz_0'...
+INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'clk_wiz_0'...
+INFO: [IP_Flow 19-1686] Generating 'Implementation' target for IP 'clk_wiz_0'...
+INFO: [IP_Flow 19-1686] Generating 'Change Log' target for IP 'clk_wiz_0'...
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'dds_compiler_0'...
+INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'dds_compiler_0'...
+INFO: [IP_Flow 19-1686] Generating 'C Simulation' target for IP 'dds_compiler_0'...
+INFO: [IP_Flow 19-1686] Generating 'Test Bench' target for IP 'dds_compiler_0'...
+INFO: [IP_Flow 19-1686] Generating 'Change Log' target for IP 'dds_compiler_0'...
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'ila_0'...
+INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'ila_0'...
+INFO: [IP_Flow 19-1686] Generating 'Implementation' target for IP 'ila_0'...
+INFO: [IP_Flow 19-1686] Generating 'Change Log' target for IP 'ila_0'...
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'xfft_0'...
+INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'xfft_0'...
+INFO: [IP_Flow 19-1686] Generating 'C Simulation' target for IP 'xfft_0'...
+INFO: [IP_Flow 19-1686] Generating 'Test Bench' target for IP 'xfft_0'...
+INFO: [IP_Flow 19-1686] Generating 'Change Log' target for IP 'xfft_0'...
+export_ip_user_files -of_objects [get_files F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0.xci] -no_script -sync -force -quiet
+export_ip_user_files -of_objects [get_files F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.srcs/sources_1/ip/dds_compiler_0/dds_compiler_0.xci] -no_script -sync -force -quiet
+export_ip_user_files -of_objects [get_files F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.srcs/sources_1/ip/ila_0/ila_0.xci] -no_script -sync -force -quiet
+export_ip_user_files -of_objects [get_files F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.srcs/sources_1/ip/xfft_0/xfft_0.xci] -no_script -sync -force -quiet
+export_simulation -of_objects [get_files F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0.xci] -directory F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.ip_user_files/sim_scripts -ip_user_files_dir F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.ip_user_files -ipstatic_source_dir F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.ip_user_files/ipstatic -lib_map_path [list {modelsim=F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/modelsim2020/modeltech64_2020.4/VIVADO_LIB} {questa=F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.cache/compile_simlib/questa} {riviera=F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.cache/compile_simlib/riviera} {activehdl=F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.cache/compile_simlib/activehdl}] -use_ip_compiled_libs -force -quiet
+export_simulation -of_objects [get_files F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.srcs/sources_1/ip/dds_compiler_0/dds_compiler_0.xci] -directory F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.ip_user_files/sim_scripts -ip_user_files_dir F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.ip_user_files -ipstatic_source_dir F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.ip_user_files/ipstatic -lib_map_path [list {modelsim=F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/modelsim2020/modeltech64_2020.4/VIVADO_LIB} {questa=F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.cache/compile_simlib/questa} {riviera=F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.cache/compile_simlib/riviera} {activehdl=F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.cache/compile_simlib/activehdl}] -use_ip_compiled_libs -force -quiet
+export_simulation -of_objects [get_files F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.srcs/sources_1/ip/ila_0/ila_0.xci] -directory F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.ip_user_files/sim_scripts -ip_user_files_dir F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.ip_user_files -ipstatic_source_dir F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.ip_user_files/ipstatic -lib_map_path [list {modelsim=F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/modelsim2020/modeltech64_2020.4/VIVADO_LIB} {questa=F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.cache/compile_simlib/questa} {riviera=F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.cache/compile_simlib/riviera} {activehdl=F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.cache/compile_simlib/activehdl}] -use_ip_compiled_libs -force -quiet
+export_simulation -of_objects [get_files F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.srcs/sources_1/ip/xfft_0/xfft_0.xci] -directory F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.ip_user_files/sim_scripts -ip_user_files_dir F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.ip_user_files -ipstatic_source_dir F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.ip_user_files/ipstatic -lib_map_path [list {modelsim=F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/modelsim2020/modeltech64_2020.4/VIVADO_LIB} {questa=F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.cache/compile_simlib/questa} {riviera=F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.cache/compile_simlib/riviera} {activehdl=F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.cache/compile_simlib/activehdl}] -use_ip_compiled_libs -force -quiet
+WARNING: [filemgmt 20-965] The target 'cmodel' is not supported by the file: F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0.xci
+WARNING: [filemgmt 20-965] The target 'testbench' is not supported by the file: F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0.xci
+WARNING: [filemgmt 20-965] The target 'cmodel' is not supported by the file: F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.srcs/sources_1/ip/ila_0/ila_0.xci
+WARNING: [filemgmt 20-965] The target 'testbench' is not supported by the file: F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.srcs/sources_1/ip/ila_0/ila_0.xci
+set_property compxlib.modelsim_compiled_library_dir D:/FPGA_leanrn/modelsim/VIVADO_LIB [current_project]
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+launch_simulation -install_path D:/FPGA_leanrn/modelsim/win64 -gcc_install_path D:/FPGA_leanrn/modelsim/VIVADO_LIB
+Command: launch_simulation -install_path D:/FPGA_leanrn/modelsim/win64 -gcc_install_path D:/FPGA_leanrn/modelsim/VIVADO_LIB
+INFO: [Vivado 12-5698] Checking validity of IPs in the design for the 'ModelSim' simulator...
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.sim/sim_1/behav/modelsim'
+INFO: [Vivado 12-4795] Using compiled simulation libraries for IPs
+INFO: [USF-ModelSim-47] Finding simulator installation...
+INFO: [USF-ModelSim-50] Using simulator executables from 'D:/FPGA_leanrn/modelsim/win64/vsim.exe'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [USF-modelsim-7] Finding pre-compiled libraries...
+INFO: [USF-modelsim-11] File 'D:/FPGA_leanrn/modelsim/VIVADO_LIB/modelsim.ini' copied to run dir:'F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.sim/sim_1/behav/modelsim'
+INFO: [SIM-utils-54] Inspecting design source files for 'fft_dds_signal_recovery_tb' in fileset 'sim_1'...
+INFO: [USF-ModelSim-107] Finding global include files...
+INFO: [USF-ModelSim-108] Finding include directories and verilog header directory paths...
+INFO: [USF-ModelSim-109] Fetching design files from 'sim_1'...
+INFO: [USF-ModelSim-2] ModelSim::Compile design
+INFO: [USF-ModelSim-15] Creating automatic 'do' files...
+INFO: [USF-ModelSim-69] Executing 'COMPILE and ANALYZE' step in 'F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.sim/sim_1/behav/modelsim'
+Reading D:/FPGA_leanrn/modelsim/tcl/vsim/pref.tcl
+
+# 10.5
+
+# do {fft_dds_signal_recovery_tb_compile.do}
+# Model Technology ModelSim SE-64 vmap 10.5 Lib Mapping Utility 2016.02 Feb 13 2016
+# vmap xil_defaultlib modelsim_lib/msim/xil_defaultlib 
+# Modifying modelsim.ini
+# Model Technology ModelSim SE-64 vlog 10.5 Compiler 2016.02 Feb 13 2016
+# Start time: 21:38:09 on Jul 24,2025
+# vlog -incr -work xil_defaultlib "+incdir+../../../../fftjian.srcs/sources_1/ip/clk_wiz_0" ../../../../fftjian.srcs/sources_1/ip/ila_0/sim/ila_0.v 
+# -- Compiling module ila_0
+# 
+# Top level modules:
+# 	ila_0
+# End time: 21:38:09 on Jul 24,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim SE-64 vcom 10.5 Compiler 2016.02 Feb 13 2016
+# Start time: 21:38:10 on Jul 24,2025
+# vcom -93 -work xil_defaultlib ../../../../fftjian.srcs/sources_1/ip/cordic_0/sim/cordic_0.vhd ../../../../fftjian.srcs/sources_1/ip/dds_compiler_0/sim/dds_compiler_0.vhd ../../../../fftjian.srcs/sources_1/ip/xfft_0/sim/xfft_0.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity cordic_0
+# -- Compiling architecture cordic_0_arch of cordic_0
+# -- Compiling entity dds_compiler_0
+# -- Compiling architecture dds_compiler_0_arch of dds_compiler_0
+# -- Compiling entity xfft_0
+# -- Compiling architecture xfft_0_arch of xfft_0
+# End time: 21:38:10 on Jul 24,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim SE-64 vlog 10.5 Compiler 2016.02 Feb 13 2016
+# Start time: 21:38:10 on Jul 24,2025
+# vlog -incr -work xil_defaultlib "+incdir+../../../../fftjian.srcs/sources_1/ip/clk_wiz_0" ../../../../fftjian.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0_clk_wiz.v ../../../../fftjian.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0.v ../../../../fftjian.srcs/sources_1/new/fft_sign.v ../../../../fftjian.srcs/sim_1/new/fft_sign_tb.v 
+# -- Compiling module clk_wiz_0_clk_wiz
+# -- Compiling module clk_wiz_0
+# -- Compiling module fft_dds_signal_recovery
+# -- Compiling module fft_dds_signal_recovery_tb
+# 
+# Top level modules:
+# 	fft_dds_signal_recovery_tb
+# End time: 21:38:10 on Jul 24,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim SE-64 vlog 10.5 Compiler 2016.02 Feb 13 2016
+# Start time: 21:38:10 on Jul 24,2025
+# vlog -work xil_defaultlib glbl.v 
+# -- Compiling module glbl
+# 
+# Top level modules:
+# 	glbl
+# End time: 21:38:10 on Jul 24,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+INFO: [USF-ModelSim-69] 'compile' step finished in '2' seconds
+INFO: [USF-ModelSim-4] ModelSim::Simulate design
+INFO: [USF-ModelSim-69] Executing 'SIMULATE' step in 'F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.sim/sim_1/behav/modelsim'
+Program launched (PID=16840)
+launch_simulation -install_path D:/FPGA_leanrn/modelsim/win64 -gcc_install_path D:/FPGA_leanrn/modelsim/VIVADO_LIB
+Command: launch_simulation -install_path D:/FPGA_leanrn/modelsim/win64 -gcc_install_path D:/FPGA_leanrn/modelsim/VIVADO_LIB
+INFO: [Vivado 12-5698] Checking validity of IPs in the design for the 'ModelSim' simulator...
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.sim/sim_1/behav/modelsim'
+INFO: [Vivado 12-4795] Using compiled simulation libraries for IPs
+INFO: [USF-ModelSim-47] Finding simulator installation...
+INFO: [USF-ModelSim-50] Using simulator executables from 'D:/FPGA_leanrn/modelsim/win64/vsim.exe'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [USF-modelsim-7] Finding pre-compiled libraries...
+INFO: [USF-modelsim-11] File 'D:/FPGA_leanrn/modelsim/VIVADO_LIB/modelsim.ini' copied to run dir:'F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.sim/sim_1/behav/modelsim'
+INFO: [SIM-utils-54] Inspecting design source files for 'fft_dds_signal_recovery_tb' in fileset 'sim_1'...
+INFO: [USF-ModelSim-107] Finding global include files...
+INFO: [USF-ModelSim-108] Finding include directories and verilog header directory paths...
+INFO: [USF-ModelSim-109] Fetching design files from 'sim_1'...
+INFO: [USF-ModelSim-2] ModelSim::Compile design
+INFO: [USF-ModelSim-15] Creating automatic 'do' files...
+INFO: [USF-ModelSim-69] Executing 'COMPILE and ANALYZE' step in 'F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.sim/sim_1/behav/modelsim'
+Reading D:/FPGA_leanrn/modelsim/tcl/vsim/pref.tcl
+
+# 10.5
+
+# do {fft_dds_signal_recovery_tb_compile.do}
+# ** Warning: (vlib-34) Library already exists at "modelsim_lib/work".
+# ** Warning: (vlib-34) Library already exists at "modelsim_lib/msim".
+# ** Warning: (vlib-34) Library already exists at "modelsim_lib/msim/xil_defaultlib".
+# Model Technology ModelSim SE-64 vmap 10.5 Lib Mapping Utility 2016.02 Feb 13 2016
+# vmap xil_defaultlib modelsim_lib/msim/xil_defaultlib 
+# Modifying modelsim.ini
+# Model Technology ModelSim SE-64 vlog 10.5 Compiler 2016.02 Feb 13 2016
+# Start time: 21:47:25 on Jul 24,2025
+# vlog -incr -work xil_defaultlib "+incdir+../../../../fftjian.srcs/sources_1/ip/clk_wiz_0" ../../../../fftjian.srcs/sources_1/ip/ila_0/sim/ila_0.v 
+# -- Skipping module ila_0
+# 
+# Top level modules:
+# 	ila_0
+# End time: 21:47:25 on Jul 24,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim SE-64 vcom 10.5 Compiler 2016.02 Feb 13 2016
+# Start time: 21:47:25 on Jul 24,2025
+# vcom -93 -work xil_defaultlib ../../../../fftjian.srcs/sources_1/ip/cordic_0/sim/cordic_0.vhd ../../../../fftjian.srcs/sources_1/ip/dds_compiler_0/sim/dds_compiler_0.vhd ../../../../fftjian.srcs/sources_1/ip/xfft_0/sim/xfft_0.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity cordic_0
+# -- Compiling architecture cordic_0_arch of cordic_0
+# -- Compiling entity dds_compiler_0
+# -- Compiling architecture dds_compiler_0_arch of dds_compiler_0
+# -- Compiling entity xfft_0
+# -- Compiling architecture xfft_0_arch of xfft_0
+# End time: 21:47:26 on Jul 24,2025, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim SE-64 vlog 10.5 Compiler 2016.02 Feb 13 2016
+# Start time: 21:47:26 on Jul 24,2025
+# vlog -incr -work xil_defaultlib "+incdir+../../../../fftjian.srcs/sources_1/ip/clk_wiz_0" ../../../../fftjian.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0_clk_wiz.v ../../../../fftjian.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0.v ../../../../fftjian.srcs/sources_1/new/fft_sign.v ../../../../fftjian.srcs/sim_1/new/fft_sign_tb.v 
+# -- Skipping module clk_wiz_0_clk_wiz
+# -- Skipping module clk_wiz_0
+# -- Compiling module fft_dds_signal_recovery
+# -- Skipping module fft_dds_signal_recovery_tb
+# 
+# Top level modules:
+# 	fft_dds_signal_recovery_tb
+# End time: 21:47:26 on Jul 24,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim SE-64 vlog 10.5 Compiler 2016.02 Feb 13 2016
+# Start time: 21:47:26 on Jul 24,2025
+# vlog -work xil_defaultlib glbl.v 
+# -- Compiling module glbl
+# 
+# Top level modules:
+# 	glbl
+# End time: 21:47:26 on Jul 24,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+INFO: [USF-ModelSim-69] 'compile' step finished in '2' seconds
+INFO: [USF-ModelSim-4] ModelSim::Simulate design
+INFO: [USF-ModelSim-69] Executing 'SIMULATE' step in 'F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.sim/sim_1/behav/modelsim'
+Program launched (PID=26136)
+exit
+INFO: [Common 17-206] Exiting Vivado at Thu Jul 24 21:49:33 2025...

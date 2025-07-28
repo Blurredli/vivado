@@ -1,0 +1,121 @@
+$date
+        2025-Jul-25 18:29:41
+$end
+$version
+        Vivado v2020.2 (64-bit)
+$end
+$timescale
+        1ps
+$end
+$scope module dut $end
+$var reg 8 " D_IBUF [7:0] $end
+$var reg 8 * A_OBUF [7:0] $end
+$var reg 1 2 event_data_in_channel_halt $end
+$var reg 1 3 m_axis_status_tvalid $end
+$var reg 1 4 event_tlast_missing $end
+$var reg 1 5 m_axis_status_tready $end
+$var reg 1 6 event_frame_started $end
+$var reg 1 7 event_tlast_unexpected $end
+$var reg 1 8 event_status_channel_halt $end
+$var reg 1 9 event_data_out_channel_halt $end
+$var reg 32 : fw [31:0] $end
+$var reg 1 Z _TRIGGER $end
+$var reg 1 [ _WINDOW $end
+$var reg 1 \ _GAP $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b1101000 "
+b1100001 *
+02
+03
+04
+05
+06
+07
+08
+09
+b0 :
+0Z
+1[
+0\
+$end
+#58
+b1100111 "
+#158
+b1110101 "
+#258
+b10000010 "
+#458
+b1111100 "
+#558
+b1101010 "
+#658
+b1100111 "
+#758
+b1101101 "
+#858
+b10000001 "
+#958
+b10000010 "
+#1000
+1Z
+#1058
+b1111111 "
+#1158
+b1101101 "
+#1258
+b1100111 "
+#1358
+b1101000 "
+#1458
+b10000000 "
+#1558
+b10000010 "
+#1658
+b10000001 "
+#1758
+b1110001 "
+#1858
+b1100111 "
+#2058
+b1111101 "
+#2158
+b10000010 "
+#2258
+b10000001 "
+#2358
+b1110110 "
+#2458
+b1101000 "
+#2558
+b1100111 "
+#2658
+b1110101 "
+#2758
+b10000010 "
+#2958
+b1111100 "
+#3058
+b1101010 "
+#3158
+b1100111 "
+#3258
+b1101101 "
+#3358
+b10000001 "
+#3458
+b10000010 "
+#3558
+b1111111 "
+#3658
+b1101101 "
+#3758
+b1100110 "
+#3858
+b1101000 "
+#3958
+b10000000 "
+#4058
+b10000010 "

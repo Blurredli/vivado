@@ -1,0 +1,160 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Sun Jul 27 11:40:04 2025
+# Process ID: 19548
+# Current directory: F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian
+# Command line: vivado.exe F:\zdyz_ZYNQ_FPGA\vivado_code\vivado_prj\fft_zishiying_lvboqi\fftjian\fftjian.xpr
+# Log file: F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/vivado.log
+# Journal file: F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.xpr
+update_compile_order -fileset sources_1
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 20
+wait_on_run impl_1
+open_hw_manager
+connect_hw_server -allow_non_jtag
+open_hw_target
+set_property PROGRAM.FILE {F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.runs/impl_1/fft_dds_signal_recovery.bit} [get_hw_devices xc7z020_1]
+set_property PROBES.FILE {F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.runs/impl_1/fft_dds_signal_recovery.ltx} [get_hw_devices xc7z020_1]
+set_property FULL_PROBES.FILE {F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.runs/impl_1/fft_dds_signal_recovery.ltx} [get_hw_devices xc7z020_1]
+current_hw_device [get_hw_devices xc7z020_1]
+refresh_hw_device [lindex [get_hw_devices xc7z020_1] 0]
+display_hw_ila_data [ get_hw_ila_data hw_ila_data_1 -of_objects [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]]
+set_property PROBES.FILE {F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.runs/impl_1/fft_dds_signal_recovery.ltx} [get_hw_devices xc7z020_1]
+set_property FULL_PROBES.FILE {F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.runs/impl_1/fft_dds_signal_recovery.ltx} [get_hw_devices xc7z020_1]
+set_property PROGRAM.FILE {F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.runs/impl_1/fft_dds_signal_recovery.bit} [get_hw_devices xc7z020_1]
+program_hw_devices [get_hw_devices xc7z020_1]
+refresh_hw_device [lindex [get_hw_devices xc7z020_1] 0]
+run_hw_ila [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]
+wait_on_hw_ila [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]
+display_hw_ila_data [upload_hw_ila_data [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]]
+set_property TRIGGER_COMPARE_VALUE eq9'u50 [get_hw_probes amp_d -of_objects [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]]
+set_property TRIGGER_COMPARE_VALUE eq9'u52 [get_hw_probes amp_d -of_objects [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]]
+run_hw_ila [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]
+wait_on_hw_ila [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]
+display_hw_ila_data [upload_hw_ila_data [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]]
+set_property TRIGGER_COMPARE_VALUE eq9'u51 [get_hw_probes amp_d -of_objects [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]]
+run_hw_ila [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]
+wait_on_hw_ila [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]
+display_hw_ila_data [upload_hw_ila_data [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]]
+set_property TRIGGER_COMPARE_VALUE eq9'u50 [get_hw_probes amp_d -of_objects [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]]
+run_hw_ila [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]
+set_property TRIGGER_COMPARE_VALUE eq9'u52 [get_hw_probes amp_d -of_objects [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]]
+set_property TRIGGER_COMPARE_VALUE eq9'u53 [get_hw_probes amp_d -of_objects [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]]
+wait_on_hw_ila -timeout 0 [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]
+upload_hw_ila_data [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]
+run_hw_ila [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]
+wait_on_hw_ila [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]
+display_hw_ila_data [upload_hw_ila_data [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]]
+set_property TRIGGER_COMPARE_VALUE eq9'b0_0011_0101 [get_hw_probes amp_d -of_objects [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]]
+set_property TRIGGER_COMPARE_VALUE eq9's53 [get_hw_probes amp_d -of_objects [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]]
+set_property TRIGGER_COMPARE_VALUE eq9'u53 [get_hw_probes amp_d -of_objects [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]]
+set_property TRIGGER_COMPARE_VALUE eq9'u51 [get_hw_probes amp_d -of_objects [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]]
+run_hw_ila [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]
+set_property TRIGGER_COMPARE_VALUE eq9'u52 [get_hw_probes amp_d -of_objects [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]]
+wait_on_hw_ila -timeout 0 [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]
+upload_hw_ila_data [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]
+run_hw_ila [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]
+wait_on_hw_ila [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]
+display_hw_ila_data [upload_hw_ila_data [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]]
+run_hw_ila [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]
+wait_on_hw_ila [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]
+display_hw_ila_data [upload_hw_ila_data [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]]
+run_hw_ila [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]
+wait_on_hw_ila -timeout 0 [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]
+upload_hw_ila_data [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]
+run_hw_ila [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]
+wait_on_hw_ila [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]
+display_hw_ila_data [upload_hw_ila_data [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]]
+run_hw_ila [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]
+wait_on_hw_ila [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]
+display_hw_ila_data [upload_hw_ila_data [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]]
+run_hw_ila [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]
+wait_on_hw_ila [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]
+display_hw_ila_data [upload_hw_ila_data [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]]
+run_hw_ila [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]
+wait_on_hw_ila [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]
+display_hw_ila_data [upload_hw_ila_data [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]]
+set_property TRIGGER_COMPARE_VALUE eq9'u51 [get_hw_probes amp_d -of_objects [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]]
+run_hw_ila [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]
+wait_on_hw_ila [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]
+display_hw_ila_data [upload_hw_ila_data [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]]
+run_hw_ila [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]
+set_property TRIGGER_COMPARE_VALUE eq9'u50 [get_hw_probes amp_d -of_objects [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]]
+wait_on_hw_ila [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]
+display_hw_ila_data [upload_hw_ila_data [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]]
+run_hw_ila [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 20
+wait_on_run impl_1
+wait_on_hw_ila [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]
+display_hw_ila_data [upload_hw_ila_data [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]]
+run_hw_ila [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]
+wait_on_hw_ila [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]
+display_hw_ila_data [upload_hw_ila_data [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]]
+set_property PROBES.FILE {F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.runs/impl_1/fft_dds_signal_recovery.ltx} [get_hw_devices xc7z020_1]
+set_property FULL_PROBES.FILE {F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.runs/impl_1/fft_dds_signal_recovery.ltx} [get_hw_devices xc7z020_1]
+set_property PROGRAM.FILE {F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.runs/impl_1/fft_dds_signal_recovery.bit} [get_hw_devices xc7z020_1]
+program_hw_devices [get_hw_devices xc7z020_1]
+refresh_hw_device [lindex [get_hw_devices xc7z020_1] 0]
+run_hw_ila [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]
+wait_on_hw_ila [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]
+display_hw_ila_data [upload_hw_ila_data [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]]
+file copy -force F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.runs/impl_1/fft_dds_signal_recovery.bit F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/51_amp_xianzhi.bit
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 20
+wait_on_run impl_1
+set_property PROBES.FILE {F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.runs/impl_1/fft_dds_signal_recovery.ltx} [get_hw_devices xc7z020_1]
+set_property FULL_PROBES.FILE {F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.runs/impl_1/fft_dds_signal_recovery.ltx} [get_hw_devices xc7z020_1]
+set_property PROGRAM.FILE {F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.runs/impl_1/fft_dds_signal_recovery.bit} [get_hw_devices xc7z020_1]
+program_hw_devices [get_hw_devices xc7z020_1]
+refresh_hw_device [lindex [get_hw_devices xc7z020_1] 0]
+display_hw_ila_data [ get_hw_ila_data hw_ila_data_1 -of_objects [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]]
+run_hw_ila [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]
+wait_on_hw_ila [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]
+display_hw_ila_data [upload_hw_ila_data [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]]
+run_hw_ila [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]
+wait_on_hw_ila [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]
+display_hw_ila_data [upload_hw_ila_data [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]]
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 20
+wait_on_run impl_1
+set_property PROBES.FILE {F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.runs/impl_1/fft_dds_signal_recovery.ltx} [get_hw_devices xc7z020_1]
+set_property FULL_PROBES.FILE {F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.runs/impl_1/fft_dds_signal_recovery.ltx} [get_hw_devices xc7z020_1]
+set_property PROGRAM.FILE {F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.runs/impl_1/fft_dds_signal_recovery.bit} [get_hw_devices xc7z020_1]
+program_hw_devices [get_hw_devices xc7z020_1]
+refresh_hw_device [lindex [get_hw_devices xc7z020_1] 0]
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 20
+wait_on_run impl_1
+set_property PROBES.FILE {F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.runs/impl_1/fft_dds_signal_recovery.ltx} [get_hw_devices xc7z020_1]
+set_property FULL_PROBES.FILE {F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.runs/impl_1/fft_dds_signal_recovery.ltx} [get_hw_devices xc7z020_1]
+set_property PROGRAM.FILE {F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.runs/impl_1/fft_dds_signal_recovery.bit} [get_hw_devices xc7z020_1]
+program_hw_devices [get_hw_devices xc7z020_1]
+refresh_hw_device [lindex [get_hw_devices xc7z020_1] 0]
+display_hw_ila_data [ get_hw_ila_data hw_ila_data_1 -of_objects [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]]
+set_property PROBES.FILE {F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.runs/impl_1/fft_dds_signal_recovery.ltx} [get_hw_devices xc7z020_1]
+set_property FULL_PROBES.FILE {F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.runs/impl_1/fft_dds_signal_recovery.ltx} [get_hw_devices xc7z020_1]
+set_property PROGRAM.FILE {F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/51_amp_xianzhi.bit} [get_hw_devices xc7z020_1]
+program_hw_devices [get_hw_devices xc7z020_1]
+refresh_hw_device [lindex [get_hw_devices xc7z020_1] 0]
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 20
+wait_on_run impl_1
+set_property PROBES.FILE {F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.runs/impl_1/fft_dds_signal_recovery.ltx} [get_hw_devices xc7z020_1]
+set_property FULL_PROBES.FILE {F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.runs/impl_1/fft_dds_signal_recovery.ltx} [get_hw_devices xc7z020_1]
+set_property PROGRAM.FILE {F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/51_amp_xianzhi.bit} [get_hw_devices xc7z020_1]
+program_hw_devices [get_hw_devices xc7z020_1]
+refresh_hw_device [lindex [get_hw_devices xc7z020_1] 0]
+add_wave -into {hw_ila_data_1.wcfg} -radix unsigned { {amp_d_signed_1} }
+set_property PROBES.FILE {F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.runs/impl_1/fft_dds_signal_recovery.ltx} [get_hw_devices xc7z020_1]
+set_property FULL_PROBES.FILE {F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.runs/impl_1/fft_dds_signal_recovery.ltx} [get_hw_devices xc7z020_1]
+set_property PROGRAM.FILE {F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.runs/impl_1/fft_dds_signal_recovery.bit} [get_hw_devices xc7z020_1]
+program_hw_devices [get_hw_devices xc7z020_1]
+refresh_hw_device [lindex [get_hw_devices xc7z020_1] 0]
+run_hw_ila [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]
+set_property TRIGGER_COMPARE_VALUE eq9'hXXX [get_hw_probes amp_d -of_objects [get_hw_ilas -of_objects [get_hw_devices xc7z020_1] -filter {CELL_NAME=~"sign"}]]

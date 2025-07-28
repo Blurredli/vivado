@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Sun Jul 27 14:23:25 2025
+# Process ID: 20848
+# Current directory: F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.runs/synth_1
+# Command line: vivado.exe -log fft_dds_signal_recovery.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source fft_dds_signal_recovery.tcl
+# Log file: F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.runs/synth_1/fft_dds_signal_recovery.vds
+# Journal file: F:/zdyz_ZYNQ_FPGA/vivado_code/vivado_prj/fft_zishiying_lvboqi/fftjian/fftjian.runs/synth_1\vivado.jou
+#-----------------------------------------------------------
+source fft_dds_signal_recovery.tcl -notrace

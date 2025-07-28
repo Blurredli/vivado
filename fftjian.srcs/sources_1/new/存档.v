@@ -1,0 +1,353 @@
+module fft_dds_signal_recovery (
+    input wire clk,                    // 系统时钟 (50 MHz)
+    input wire rst_n,                  // 复位信号，低有效
+    
+    (* DONT_TOUCH = "TRUE" *) input wire  [7:0] D,               // 混合信号（A + 干扰）
+    output wire adc_clk_d,             // ADC采样时钟（混合信号）
+    output wire adc_clk_n,             // ADC采样时钟（干扰信号）
+    output wire dac_clk,               // DAC输出时钟
+    input wire  [7:0] noise_ref,       // 干扰参考信号
+    
+    (* DONT_TOUCH = "TRUE" *)  output wire  [7:0] A               // 还原的A信号
+
+);
+// 信号居中处理
+wire signed [7:0] d;
+wire signed [7:0] n;
+assign d = D - 8'd128;                 // 混合信号居中
+assign n = noise_ref - 8'd128;         // 干扰信号居中
+/////////////////////时钟定义////////////////////////////
+reg clk_1m;                            // 1MHz时钟
+reg clk_5m;                            // 5MHz时钟
+wire clk_10M;                          // 10MHz时钟
+wire clk_5;                            // 5MHz时钟输出
+wire clk_1;                            // 1MHz时钟输出
+assign clk_5 = clk_5m;
+assign clk_1 = clk_1m;
+assign adc_clk_d = clk_1;              // 混合信号ADC采样时钟
+assign adc_clk_n = clk_1;              // 干扰信号ADC采样时钟
+assign dac_clk = ~clk_10M;             // DAC输出时钟
+//////////////////////////////////////////////
+wire signed [15:0] fft_out_d;          // 混合信号FFT输出（实部/虚部）
+wire signed [15:0] fft_out_n;          // 干扰信号FFT输出（实部/虚部）
+ 
+   
+wire m_axis_data_tvalid_d;              // FFT输出有效（混合信号）
+wire m_axis_data_tvalid_n;              // FFT输出有效（干扰信号）
+wire m_axis_data_tlast_d;               // FFT输出最后一包（混合信号）
+wire m_axis_data_tlast_n;               // FFT输出最后一包（干扰信号）
+wire s_axis_config_tready_d;            // FFT配置就绪（混合信号）
+wire s_axis_config_tready_n;            // FFT配置就绪（干扰信号）
+
+
+
+  clk_wiz_0 instance_name
+   (
+    // Clock out ports
+    .clk_out1(clk_10M),     // output clk_out1
+    // Status and control signals
+    .reset(!rst_n), // input reset
+    .locked(),       // output locked
+   // Clock in ports
+    .clk_in1(clk));      // input clk_in1
+
+reg [3:0] counter;                      // 1MHz时钟分频计数器（0-9）
+
+always @(posedge clk_10M or negedge rst_n) begin
+    if (!rst_n) begin
+        counter <= 0;
+        clk_1m <= 0;
+    end else begin
+        if (counter == 9) begin
+            counter <= 0;
+            clk_1m <= ~clk_1m; // 翻转输出
+        end else begin
+            counter <= counter + 1;
+        end
+    end
+end
+reg [3:0] counter_1;                    // 5MHz时钟分频计数器（0-1）
+always @(posedge clk_10M or negedge rst_n) begin
+    if (!rst_n) begin
+        counter_1 <= 0;
+        clk_5m <= 0;
+    end else begin
+        if (counter_1 == 1) begin
+            counter_1 <= 0;
+            clk_5m <= ~clk_5m; // 翻转输出
+        end else begin
+            counter_1 <= counter_1 + 1;
+        end
+    end
+end
+ /////////////////////////////////////最后一帧数据//////////  
+reg s_axis_data_tlast_d;                // 混合信号FFT输入最后一帧标志
+reg s_axis_data_tlast_n;                // 干扰信号FFT输入最后一帧标志
+ ///////////////////////
+ wire s_axis_data_tready_d;              // FFT输入就绪（混合信号）
+ wire s_axis_data_tready_n;              // FFT输入就绪（干扰信号）
+ reg s_axis_data_tvalid_d;               // FFT输入有效（混合信号）
+ reg s_axis_data_tvalid_n;               // FFT输入有效（干扰信号）
+reg [15:0] data_index;                  // 数据帧计数器
+always @(posedge clk_5 or negedge rst_n) begin
+    if (!rst_n) begin
+        data_index <= 0;// 初始化控制�?�逻辑
+        s_axis_data_tvalid_d <=0;
+        s_axis_data_tvalid_n <= 0;
+        s_axis_data_tlast_d <= 0;
+        s_axis_data_tlast_n <= 0;
+    end else if (s_axis_data_tready_d && s_axis_data_tready_n) begin
+        // 只有 ready 有效，才递交数据
+        s_axis_data_tvalid_d <= 1'b1;
+         s_axis_data_tvalid_n <= 1'b1;
+        s_axis_data_tlast_d  <= (data_index == 65535);
+        s_axis_data_tlast_n <= (data_index == 65535);
+
+        data_index <= (data_index == 65535) ? 0 : data_index + 1;
+    end
+    else begin
+    s_axis_data_tvalid_d <= 1'b0;
+         s_axis_data_tvalid_n <= 1'b0;
+         s_axis_data_tlast_d <= 1'b0;
+            s_axis_data_tlast_n <= 1'b0;
+end
+end
+
+
+
+
+
+wire signed [23:0] tuser_d;             // FFT用户数据（混合信号）
+wire  signed [23:0] tuser_n;             // FFT用户数据（干扰信号）
+
+//////////////////////
+wire event_data_in_channel_halt;         // 输入通道停止事件
+wire m_axis_status_tvalid;               // 状态数据有效
+wire event_tlast_missing;                // 缺少tlast事件
+wire m_axis_status_tready;               // 状态通道就绪
+wire event_frame_started;                // 帧处理开始事件
+wire event_tlast_unexpected;             // 意外tlast事件
+wire event_status_channel_halt;          // 状态通道停止事件
+wire event_data_out_channel_halt;        // 输出通道停止事件
+    // FFT IP核实例化（混合信号）
+    // 注意：s_axis_data_tdata、m_axis_data_tdata等端口实际为16位（高8位补零，低8位为有效数据）
+    xfft_0 xfft_d_inst (
+  .aclk(clk_5),                         // FFT时钟
+  .aresetn(rst_n),                      // FFT复位
+  .s_axis_config_tdata(8'b00000001),    // FFT配置数据，8位
+  .s_axis_config_tvalid(1'b1),          // FFT配置有效
+  .s_axis_config_tready(s_axis_config_tready_d), // FFT配置就绪
+  .s_axis_data_tdata({8'b0, d}),        // FFT输入数据，16位（高8位补零，低8位为d[7:0]）
+  .s_axis_data_tvalid(s_axis_data_tvalid_d),     // FFT输入有效
+  .s_axis_data_tready(s_axis_data_tready_d),     // FFT输入就绪
+  .s_axis_data_tlast(s_axis_data_tlast_d),       // FFT输入最后一帧
+  .m_axis_data_tdata(fft_out_d),        // FFT输出数据，16位（高8位实部，低8位虚部）
+  .m_axis_data_tuser(tuser_d),          // FFT用户数据，24位
+  .m_axis_data_tvalid(m_axis_data_tvalid_d),     // FFT输出有效
+  .m_axis_data_tready(1'b1),            // FFT输出就绪
+  .m_axis_data_tlast(m_axis_data_tlast_d),       // FFT输出最后一包
+  .m_axis_status_tdata(),               // FFT状态数据
+  .m_axis_status_tvalid(m_axis_status_tvalid),   // FFT状态有效
+  .m_axis_status_tready(1'b1),          // FFT状态就绪
+  .event_frame_started(event_frame_started),     // 帧处理开始事件
+  .event_tlast_unexpected(event_tlast_unexpected), // 意外tlast事件
+  .event_tlast_missing(event_tlast_missing),     // 缺少tlast事件
+  .event_status_channel_halt(event_status_channel_halt), // 状态通道停止事件
+  .event_data_in_channel_halt(event_data_in_channel_halt), // 输入通道停止事件
+  .event_data_out_channel_halt(event_data_out_channel_halt) // 输出通道停止事件
+);
+wire signed [7:0] re, im;
+
+wire signed [15:0] index;
+assign index = tuser_d[15:0];
+
+ wire signed  [15:0]fft_d;
+
+assign {re,im} = fft_out_d;
+assign fft_d = $signed(re)* $signed(re) + $signed(im)*$signed(im);
+
+//     FFT IP核实例化（干扰信号）
+    // 注意：s_axis_data_tdata、m_axis_data_tdata等端口实际为16位（高8位补零，低8位为有效数据）
+    xfft_0 xfft_noise_inst (
+        .aclk(clk_5),                         // FFT时钟
+  .aresetn(rst_n),                      // FFT复位
+  .s_axis_config_tdata(8'b00000001),    // FFT配置数据，8位
+  .s_axis_config_tvalid(1'b1),          // FFT配置有效
+  .s_axis_config_tready(s_axis_config_tready_n), // FFT配置就绪
+  .s_axis_data_tdata({8'b0, n}),        // FFT输入数据，16位（高8位补零，低8位为n[7:0]）
+  .s_axis_data_tvalid(s_axis_data_tvalid_n),     // FFT输入有效
+  .s_axis_data_tready(s_axis_data_tready_n),     // FFT输入就绪
+  .s_axis_data_tlast(s_axis_data_tlast_n),       // FFT输入最后一帧
+  .m_axis_data_tdata(fft_out_n),        // FFT输出数据，16位（高8位实部，低8位虚部）
+  .m_axis_data_tuser(tuser_n),          // FFT用户数据，24位
+  .m_axis_data_tvalid(m_axis_data_tvalid_n),     // FFT输出有效
+  .m_axis_data_tready(1'b1),            // FFT输出就绪
+  .m_axis_data_tlast(m_axis_data_tlast_n),       // FFT输出最后一包
+  .m_axis_status_tdata(),               // FFT状态数据
+  .m_axis_status_tvalid(),              // FFT状态有效
+  .m_axis_status_tready(1'b1),          // FFT状态就绪
+  .event_frame_started(),               // 帧处理开始事件
+  .event_tlast_unexpected(),            // 意外tlast事件
+  .event_tlast_missing(),               // 缺少tlast事件
+  .event_status_channel_halt(),         // 状态通道停止事件
+  .event_data_in_channel_halt(),        // 输入通道停止事件
+  .event_data_out_channel_halt()        // 输出通道停止事件
+    );
+wire signed [7:0] re_n, im_n;
+
+wire signed [15:0]index_n;
+assign index_n = tuser_n[15:0];
+ wire signed [15:0]fft_n;
+assign {re_n,im_n} = fft_out_n;
+assign fft_n =$signed( re_n)*$signed( re_n )+ $signed(im_n)*$signed(im_n);
+
+
+wire signed [15:0] fft;
+assign fft = fft_d - fft_n;
+
+ reg signed [15:0] current_max;
+ reg signed [15:0] max_value;
+ reg signed [15:0] max_index;
+ reg signed [15:0] current_index;
+ reg max_valid;   
+    // �?测有效信号同时为�?
+    wire data_valid = m_axis_data_tvalid_d & m_axis_data_tvalid_n;
+    wire frame_end = m_axis_data_tlast_d & m_axis_data_tlast_n;
+// reg  [15:0] fft_d_r, fft_n_r;
+reg [15:0] current_max_fft_d ,
+           current_max_fft_n ;
+ reg [15:0]  max_fft_d,max_fft_n;      
+    always @(posedge clk_5 or negedge  rst_n) begin
+        if (!rst_n) begin
+            current_max <= 32'h80000000; // 初始化为最小有符号数
+            max_value <= 0;
+            max_valid <= 0;
+            current_index<= 0;
+            max_index<=0;
+        end else begin
+            max_valid <= 0; // 默认无效
+            // fft_d_r <= fft_d;
+            // fft_n_r <= fft_n;
+            if (data_valid) begin
+                // 比较并更新最大�??
+                if (fft > current_max) begin
+                    current_max <= fft;
+                    current_index <= index;
+                    // fft_d_r <= fft_d;
+                    current_max_fft_d <= fft_d;
+                    current_max_fft_n <= fft_n;
+                    
+                end
+            end
+            
+            if (frame_end) begin
+                // 帧结束时输出最大值下标
+                max_value <= current_max;
+                max_index <= current_index;
+                max_fft_d <= current_max_fft_d;
+                max_fft_n <= current_max_fft_n;
+                max_valid <= 1;
+                current_max <= 32'h80000000; // 重置为最小有符号数
+            end
+        end
+    end
+    wire [15:0] abs_max_index;
+     assign abs_max_index = (max_index[14]) ? (-$signed(max_index) ) : max_index;
+
+reg [31:0] fword;                       // DDS相位字
+always @(posedge clk_5 or negedge rst_n) begin
+if(!rst_n) begin
+fword <= 0;
+end else begin
+
+ fword <=abs_max_index<<<16;
+ end
+ end
+ wire [31:0] fw;
+ assign fw = fword;
+wire signed [7:0] dac_raw, dac;         // DDS原始输出/缩放后输出
+
+// DDS IP核实例化，输出8位数据
+// 输入fword为32位相位字，输出dac_raw为8位
+dds_compiler_0 your_instance_name (
+  .aclk(clk_5),                                  // DDS时钟
+  .s_axis_config_tvalid(1'b1),                   // DDS配置有效
+  .s_axis_config_tdata(fw),                      // DDS配置数据，32位相位字
+  .m_axis_data_tvalid(),                         // DDS输出有效
+  .m_axis_data_tdata(dac_raw)                    // DDS输出数据，8位
+);
+
+///////////////////////////////�?方求幅�??
+(* DONT_TOUCH = "TRUE" *) wire [15:0] amp_d;
+wire [15:0] amp_n;                // 混合信号/干扰信号幅值 // 对接仿真模型的 16 位总线
+// CORDIC IP核实例化，输入16位能量，输出8位幅值
+cordic_0 sqrt_d (
+  .aclk(clk),                                    // CORDIC时钟
+  .aresetn(rst_n),                               // CORDIC复位
+  .s_axis_cartesian_tvalid(1'b1),                // 输入有效
+  .s_axis_cartesian_tdata(max_fft_d),            // 输入数据，16位
+  .m_axis_dout_tvalid(),                         // 输出有效
+  .m_axis_dout_tdata(amp_d)                      // 输出幅值，9位
+);
+
+cordic_0 sqrt_n (
+  .aclk(clk),                                    // CORDIC时钟
+  .aresetn(rst_n),                               // CORDIC复位
+  .s_axis_cartesian_tvalid(1'b1),                // 输入有效
+  .s_axis_cartesian_tdata(max_fft_n),            // 输入数据，16位
+  .m_axis_dout_tvalid(),                         // 输出有效
+  .m_axis_dout_tdata(amp_n)                      // 输出幅值，9位
+);
+// amp 是单边幅度 实际x2才是实际幅度
+
+(* DONT_TOUCH = "TRUE" *) wire  [7:0] amp_d_8;  
+// 取 amp_d[8:0] 里的 9 位有效数据，再做中心化(& 缩减成 8 位)
+// 这里取低8位，并减去 128 居中
+assign amp_d_8 = amp_d[7:0];       //
+
+
+(* DONT_TOUCH = "TRUE" *) reg    signed     [15:0]      mult_full;
+reg   [7:0] last_amp = 8'd0;       // 上一次使用的 amp_d_8
+wire  [8:0] delta;              // 差值要留出符号位
+assign delta = (amp_d_8 - last_amp) > 0 ? amp_d_8 - last_amp : last_amp - amp_d_8;
+
+  always @(dac_raw) 
+  begin
+    if (delta < 5 || delta > 50) // 差值小于5或大于50时，使用上一次的幅值
+        begin
+            mult_full = $signed(dac_raw) * $signed(last_amp);
+        end
+    else
+        begin
+            last_amp = amp_d_8; // 更新幅值
+            mult_full = $signed(dac_raw) * $signed(amp_d_8);
+        end
+  end
+  
+assign A  = mult_full [14:7] + 8'd128;    // 加偏置输出
+
+
+ila_0 sign (
+    .clk(clk),                          // ILA时钟
+    .probe0(D),                         // 输入信号
+    .probe1(A),                         // 还原信号
+    .probe2(amp_d[8:0]),
+    .probe3(amp_d_8),    
+    .probe4(mult_full)
+);
+
+// ila_0 sign (
+//     .clk(clk),                          // ILA时钟
+//     .probe0(D),                         // 输入信号
+//     .probe1(A),                         // 还原信号
+//     .probe2(event_data_in_channel_halt),// 输入通道停止事件
+//     .probe3(m_axis_status_tvalid),      // 状态数据有效
+//     .probe4(event_tlast_missing),       // 缺少tlast事件
+//     .probe5(m_axis_status_tready),      // 状态通道就绪
+//     .probe6(event_frame_started),       // 帧处理开始事件
+//     .probe7(event_tlast_unexpected),    // 意外tlast事件
+//     .probe8(event_status_channel_halt), // 状态通道停止事件
+//     .probe9(event_data_out_channel_halt), // 输出通道停止事件
+//     .probe10(fw)                        // DDS相位字
+// );
+endmodule
